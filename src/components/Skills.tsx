@@ -70,7 +70,7 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Skills
           </h2>
-          <div className="w-24 h-1 bg-[#294149] mx-auto mb-6"></div>
+          <div className={`w-24 h-1 mx-auto mb-6 ${darkMode ? 'bg-[#577B87]' : 'bg-[#294149]'}`}></div>
           <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Every skill is a chess piece in my strategic gameplan
           </p>

@@ -85,7 +85,7 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Projects
           </h2>
-          <div className="w-24 h-1 bg-[#294149] mx-auto mb-6"></div>
+          <div className={`w-24 h-1 mx-auto mb-6 ${darkMode ? 'bg-[#577B87]' : 'bg-[#294149]'}`}></div>
           <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Each project represents a strategic move in my tech journey
           </p>
@@ -133,13 +133,13 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                 {/* Action Buttons */}
                 <div className="flex gap-4">
                   <button className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                    darkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+                    darkMode ? 'bg-[#577B87] hover:bg-[#47676d] text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
                   }`}>
                     <ExternalLink size={16} />
                     Demo
                   </button>
                   <button className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors duration-200 ${
-                    darkMode ? 'border-gray-500 text-gray-300 hover:bg-gray-600' : 'border-gray-300 text-gray-600 hover:bg-gray-50'
+                    darkMode ? 'border-[#577B87] text-[#577B87] hover:bg-[#577B87] hover:text-white' : 'border-gray-300 text-gray-600 hover:bg-gray-50'
                   }`}>
                     <Github size={16} />
                     Code

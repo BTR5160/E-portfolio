@@ -10,6 +10,10 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
 
+  // Accent colors
+  const accentText = darkMode ? 'text-[#577B87]' : 'text-[#294149]';
+  const hoverText = darkMode ? 'hover:text-[#577B87]' : 'hover:text-[#294149]';
+
   const navItems = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
@@ -20,110 +24,96 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
     { href: '#contact', label: 'Contact' }
   ];
 
-  // Scroll spy effect
   useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.replace('#', ''));
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -60% 0px', // Trigger when top 40% of section is visible
-      threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: '0px 0px -60% 0px', threshold: 0 }
+    );
+    navItems.forEach((item) => {
+      const el = document.getElementById(item.href.slice(1));
+      if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, []);
 
+  const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      darkMode ? 'bg-gray-900/95 text-white' : 'bg-white/95 text-gray-900'
-    } backdrop-blur-sm border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+    <header className={`fixed top-0 w-full z-50 backdrop-blur-sm border-b transition-colors duration-300 ${
+      darkMode ? 'bg-gray-900/90 text-white border-gray-700' : 'bg-white/90 text-gray-900 border-gray-200'
+    }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl dr-sugiyama-regular">BTR</a>
-          </div>
+          <a href="#home" onClick={(e) => scrollTo(e, '#home')} className="text-2xl font-bold">BTR</a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
+          {/* Desktop */}
+          <div className="hidden md:flex space-x-6">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium  ${
-                    activeSection === item.href.replace('#', '')
-                      ? darkMode
-                        ? 'text-white bg-[#294149] px-4 py-2 rounded-lg shadow-md'
-                        :'text-white bg-[#294149] px-4 py-2 rounded-lg shadow-md'
-                      : ''
-                  } ${
-                    darkMode ? 'hover:text-yellow-400' : 'hover:text-[#294149]'
+                  onClick={(e) => scrollTo(e, item.href)}
+                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${hoverText} ${
+                    isActive ? `${accentText} underline underline-offset-4` : ''
                   }`}
                 >
                   {item.label}
                 </a>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          {/* Dark Mode Toggle & Mobile Menu Button */}
+          {/* Toggle & Mobile */}
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-lg transition-colors duration-200 ${
-                darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
-              }`}
+              className="p-2 rounded-lg transition-colors duration-200 hover:bg-gray-700/50"
+              aria-label="Toggle Dark Mode"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`p-2 rounded-lg transition-colors duration-200 ${
-                  darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
-                }`}
-              >
-                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-lg transition-colors duration-200 hover:bg-gray-700/50"
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile */}
         {isMenuOpen && (
-          <div className={`md:hidden border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                    activeSection === item.href.replace('#', '')
-                      ? darkMode
-                        ? 'text-yellow-400'
-                        : 'text-[#294149] font-semibold underline'
-                      : ''
-                  } ${
-                    darkMode ? 'hover:text-yellow-400' : 'hover:text-[#294149]'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+          <div className={`md:hidden border-t transition-colors duration-200 ${
+            darkMode ? 'border-gray-700' : 'border-gray-200'
+          }`}>
+            <div className="px-2 pt-4 pb-3 space-y-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.slice(1);
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => scrollTo(e, item.href)}
+                    className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${hoverText} ${
+                      isActive ? `${accentText} font-semibold` : ''
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}
