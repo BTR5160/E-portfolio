@@ -61,7 +61,7 @@ function App() {
     <div className={`min-h-screen transition-colors duration-300 ${
       darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode}  />
       <Hero darkMode={darkMode} />
       <About darkMode={darkMode} />
       <Projects darkMode={darkMode} />
@@ -73,5 +73,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

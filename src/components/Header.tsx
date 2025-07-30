@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 
 interface HeaderProps {
@@ -8,6 +8,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   const navItems = [
     { href: '#home', label: 'Home' },
@@ -19,6 +20,31 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
     { href: '#contact', label: 'Contact' }
   ];
 
+  // Scroll spy effect
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace('#', ''));
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -60% 0px', // Trigger when top 40% of section is visible
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       darkMode ? 'bg-gray-900/95 text-white' : 'bg-white/95 text-gray-900'
@@ -26,11 +52,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl dr-sugiyama-regular">
-              BTR
-            </a>
+            <a href="#home" className="text-2xl dr-sugiyama-regular">BTR</a>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
@@ -38,7 +62,13 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-[#294149] ${
+                  className={`px-3 py-2 text-sm font-medium  ${
+                    activeSection === item.href.replace('#', '')
+                      ? darkMode
+                        ? 'text-white bg-[#294149] px-4 py-2 rounded-lg shadow-md'
+                        :'text-white bg-[#294149] px-4 py-2 rounded-lg shadow-md'
+                      : ''
+                  } ${
                     darkMode ? 'hover:text-yellow-400' : 'hover:text-[#294149]'
                   }`}
                 >
@@ -58,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            
+
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -80,7 +110,13 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 hover:text-[#294149] ${
+                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
+                    activeSection === item.href.replace('#', '')
+                      ? darkMode
+                        ? 'text-yellow-400'
+                        : 'text-[#294149] font-semibold underline'
+                      : ''
+                  } ${
                     darkMode ? 'hover:text-yellow-400' : 'hover:text-[#294149]'
                   }`}
                   onClick={() => setIsMenuOpen(false)}

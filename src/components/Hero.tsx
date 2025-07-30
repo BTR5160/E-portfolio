@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, ArrowDown, Crown } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 interface HeroProps {
   darkMode: boolean;
@@ -31,16 +31,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="space-y-8">
-          {/* Animated Chess Crown */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <Crown 
-                size={80} 
-                className="text-yellow-500 animate-pulse drop-shadow-2xl" 
-              />
-              <div className="absolute -inset-4 bg-yellow-500/20 rounded-full blur-xl animate-pulse"></div>
-            </div>
-          </div>
+
 
           {/* Name */}
           <h1 className={`text-6xl md:text-8xl font-bold tracking-tight ${
@@ -80,9 +71,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <ArrowDown className={`animate-bounce ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
-        </div>
+    
       </div>
     </section>
   );
