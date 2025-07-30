@@ -1,5 +1,7 @@
 import React from 'react';
 import { Brain, Target, Trophy } from 'lucide-react';
+import myImage from '../assets/me.png'; 
+
 
 interface AboutProps {
   darkMode: boolean;
@@ -23,13 +25,14 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Profile Image Placeholder */}
           <div className="flex justify-center">
-            <div className={`w-80 h-80 rounded-full ${
+            <div className={`w-80 ${
               darkMode ? 'bg-gray-700' : 'bg-gray-200'
             } flex items-center justify-center relative overflow-hidden shadow-2xl`}>
               <div className={`text-6xl font-bold ${
                 darkMode ? 'text-gray-500' : 'text-gray-400'
               }`}>
-                BT
+              <img src={myImage} alt="Bilel Triki" />
+
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[#294149]/20 to-transparent"></div>
             </div>
@@ -40,9 +43,10 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
             <p className={`text-lg leading-relaxed ${
               darkMode ? 'text-gray-300' : 'text-gray-600'
             }`}>
-              Top-ranked student from Tunisia with strong skills in Business Intelligence, 
-              Data Science, and MLOps. I have hands-on experience with cutting-edge tools 
-              like MLflow, DVC, CrewAI, Power BI, and Google Apps Script.
+              Top-ranked student at ESEN Manouba with strong skills in Business Intelligence and Data Science.
+               I’ve built practical solutions using Power BI and Google Apps Script, 
+               and I’m actively exploring MLOps and LLMOps through hands-on projects using tools
+               like MLflow, DVC, and CrewAI.
             </p>
             
             <p className={`text-lg leading-relaxed ${

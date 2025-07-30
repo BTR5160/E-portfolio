@@ -11,18 +11,21 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
       darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-white to-gray-50'
     }`}>
 {/* Chess Pattern Background */}
-<div className="absolute inset-0 opacity-5">
-  <div className="w-screen grid grid-cols-8 grid-rows-8">
-    {Array.from({ length: 64 }).map((_, i) => (
+<div className="absolute inset-0 opacity-20">
+  <div className="w-screen h-screen grid grid-cols-8 grid-rows-18">
+    {Array.from({ length: 144 }).map((_, i) => (
       <div
         key={i}
         className={`aspect-square ${
-          (Math.floor(i / 8) + i) % 2 === 0 ? 'bg-black' : 'bg-white'
+          (Math.floor(i / 8) + i) % 2 === 0 ? 'bg-[#A17C5B]' : 'bg-[#EBDAB5]'
         }`}
       />
     ))}
   </div>
 </div>
+
+
+
 
 
 

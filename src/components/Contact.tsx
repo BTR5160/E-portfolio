@@ -159,7 +159,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                     <p className={`${
                       darkMode ? 'text-gray-300' : 'text-gray-600'
                     }`}>
-                      bilel.triki@example.com
+                      btriki74@gmail.com
                     </p>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                     <p className={`${
                       darkMode ? 'text-gray-300' : 'text-gray-600'
                     }`}>
-                      Tunisia
+                      Ariana, Tunisia
                     </p>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Award } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 
 interface ExperienceProps {
   darkMode: boolean;
@@ -8,36 +8,60 @@ interface ExperienceProps {
 const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
   const experiences = [
     {
-      title: "Business Intelligence Intern",
-      company: "PwC TAC Tunis",
-      period: "2025",
+      title: "Intern – PwC TAC (Tunis)",
+      company: "PwC Technology & Analytics Consulting",
+      period: "July 2025",
       location: "Tunis, Tunisia",
-      description: "Developed comprehensive dashboards for task and incident tracking, improving operational efficiency through data visualization and analytics.",
+      description: "Built a real-time Power BI dashboard for tracking tasks and incidents. Enhanced reporting and visibility for internal operations.",
       type: "internship"
     },
     {
+      title: "Vice President",
+      company: "ESEN Ambassadors Club",
+      period: "2024 – 2025",
+      location: "Manouba, Tunisia",
+      description: "Organized key events like JPO and ESENet, introduced livestreaming and screen projection, and collaborated with administration on planning.",
+      type: "leadership"
+    },
+    {
+      title: "Intern – PwC TAC (Tunis)",
+      company: "PwC Technology & Analytics Consulting",
+      period: "June 2024",
+      location: "Tunis, Tunisia",
+      description: "Designed and developed a dashboard for task and incident management using Power BI, transforming raw data into actionable insights.",
+      type: "internship"
+    },
+    {
+      title: "Digital Media Coordinator",
+      company: "ESEN Elite Council Entourage",
+      period: "2023 – 2024",
+      location: "Manouba, Tunisia",
+      description: "Managed digital branding and content strategy for the council. Promoted campaigns and ensured visual consistency across channels.",
+      type: "leadership"
+    },
+    {
       title: "President",
-      company: "Event Club at ESEN",
-      period: "2024 - Present",
-      location: "ESEN, Tunisia",
-      description: "Leading event organization and strategic planning for university activities, managing team coordination and stakeholder relationships.",
+      company: "Interact Club Ariana Tines",
+      period: "2021 – 2022",
+      location: "Ariana, Tunisia",
+      description: "Led the club’s vision, organized community impact projects, and managed internal coordination among members and partners.",
       type: "leadership"
     },
     {
-      title: "Chef Média",
-      company: "Interact Club",
-      period: "2023 - 2024",
-      location: "Tunisia",
-      description: "Managed media strategy and communications, overseeing digital content creation and community engagement initiatives.",
+      title: "Vice President",
+      company: "Interact Club Ariana Tines",
+      period: "2020 – 2021",
+      location: "Ariana, Tunisia",
+      description: "Assisted in managing projects and supported the club president in planning and execution of local events.",
       type: "leadership"
     },
     {
-      title: "ESEN Ambassador",
-      company: "ESEN University",
-      period: "2023 - Present",
-      location: "ESEN, Tunisia",
-      description: "Responsible for event logistics and live streaming operations, representing the university in various academic and social events.",
-      type: "ambassador"
+      title: "Media Leader",
+      company: "Interact Club Ariana Tines",
+      period: "2020 – 2021",
+      location: "Ariana, Tunisia",
+      description: "Managed the club’s media and communication efforts, including social media and promotional materials.",
+      type: "leadership"
     }
   ];
 
@@ -101,15 +125,15 @@ const Experience: React.FC<ExperienceProps> = ({ darkMode }) => {
                   <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl ${
                     darkMode ? 'bg-gray-700' : 'bg-white'
                   } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                    
+
                     <div className={`w-full h-1 bg-gradient-to-r ${getTypeColor(exp.type)} rounded-full mb-4`}></div>
-                    
+
                     <h3 className={`text-xl font-bold mb-2 ${
                       darkMode ? 'text-white' : 'text-gray-900'
                     }`}>
                       {exp.title}
                     </h3>
-                    
+
                     <h4 className={`text-lg font-semibold mb-3 text-[#294149]`}>
                       {exp.company}
                     </h4>

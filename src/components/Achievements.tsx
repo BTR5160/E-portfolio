@@ -10,30 +10,37 @@ const Achievements: React.FC<AchievementsProps> = ({ darkMode }) => {
     {
       icon: Trophy,
       title: "Second in Class",
-      year: "2024-2025",
-      description: "Academic excellence in Business Intelligence and Data Science program",
+      year: "2024–2025",
+      description: "Ranked 2nd in Business Intelligence specialization at ESEN with a 16.46 average.",
       color: "from-yellow-500 to-orange-500"
     },
     {
       icon: Medal,
       title: "First in Class",
-      year: "2023-2024",
-      description: "Top academic performance demonstrating consistent excellence",
+      year: "2023–2024",
+      description: "Achieved top rank during the common core year in Business Computing.",
       color: "from-blue-500 to-purple-600"
     },
     {
-      icon: Award,
-      title: "Active Student Recognition",
-      year: "ESEN",
-      description: "Outstanding contribution to university community and extracurricular activities",
+      icon: Star,
+      title: "Hackathon Finalist – AI for Climate",
+      year: "2025",
+      description: "Selected among top 6 of 30 teams for an AI-based climate prediction solution.",
       color: "from-green-500 to-teal-600"
     },
     {
-      icon: Star,
-      title: "Leadership Excellence",
-      year: "Multiple Years",
-      description: "Awards in academic and extracurricular excellence across various leadership roles",
+      icon: Award,
+      title: "Hackathon Winner – Safety Challenge",
+      year: "2025",
+      description: "Won 1st place by designing a safety-focused tech solution.",
       color: "from-purple-500 to-pink-600"
+    },
+    {
+      icon: Star,
+      title: "Most Active Student Recognition",
+      year: "2025",
+      description: "Honored by ESEN for exceptional involvement in academic and extracurricular activities.",
+      color: "from-rose-500 to-red-600"
     }
   ];
 
@@ -64,16 +71,11 @@ const Achievements: React.FC<AchievementsProps> = ({ darkMode }) => {
                 darkMode ? 'bg-gray-700' : 'bg-white'
               } shadow-xl hover:shadow-2xl border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
             >
-              {/* Gradient Top Border */}
               <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${achievement.color} rounded-t-xl`}></div>
-              
               <div className="flex items-start space-x-6">
-                {/* Icon */}
                 <div className={`flex-shrink-0 p-4 rounded-full bg-gradient-to-r ${achievement.color} shadow-lg`}>
                   <achievement.icon size={32} className="text-white" />
                 </div>
-
-                {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className={`text-2xl font-bold ${
@@ -87,7 +89,6 @@ const Achievements: React.FC<AchievementsProps> = ({ darkMode }) => {
                       {achievement.year}
                     </span>
                   </div>
-                  
                   <p className={`text-base leading-relaxed ${
                     darkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}>
@@ -95,14 +96,11 @@ const Achievements: React.FC<AchievementsProps> = ({ darkMode }) => {
                   </p>
                 </div>
               </div>
-
-              {/* Hover Effect */}
               <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
             </div>
           ))}
         </div>
 
-        {/* Philosophy Section */}
         <div className={`mt-20 p-8 rounded-xl ${
           darkMode ? 'bg-gray-700' : 'bg-white'
         } shadow-xl border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
